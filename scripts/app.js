@@ -13,6 +13,7 @@ function init() {
   quitBtn = document.querySelector("#quit");
   startBtn = document.querySelector("#startBtn");
   quitBtn.classList.add("hidden")
+  startBtn.classList.add("center-start-btn")
   
 
   message = document.querySelector("#message");
@@ -44,6 +45,7 @@ function startGame() {
   message.textContent = `Level ${level}`;
   message.style.color = "black"
   startBtn.disabled = true;
+  startBtn.classList.remove("center-start-btn")
   quitBtn.classList.remove("hidden")
   quitBtn.disabled = false
   setTimeout(function () {

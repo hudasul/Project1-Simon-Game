@@ -60,6 +60,11 @@ body{
     border-radius: 15px;
 }
 
+.center-start-btn{
+    margin-left: 188px;
+
+}
+
 .hidden{
     visibility: hidden;
 }
