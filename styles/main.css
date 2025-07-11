@@ -1,0 +1,40 @@
+body{
+    background-color: rgb(207, 195, 195);
+    text-align: center;
+}
+
+.button-container{
+    width: 600px;
+    height: 500px;
+    background-color: black;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.button{
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 15px;
+}
+
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: green;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.yellow{
+    background-color: yellow;
+}
