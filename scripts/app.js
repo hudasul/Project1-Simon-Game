@@ -1,41 +1,56 @@
-function init(){
 /*-------------------------------- Constants --------------------------------*/
-// create random number between 0 and 3
-const FlashedButtonID = Math.floor(Math.random() * 4)
-console.log(FlashedButtonID)
 
+const ComputerPattern = []
+const playerPattern = []
 
 /*---------------------------- Variables (state) ----------------------------*/
-
-
+let FlashedButtonID 
+let buttonsElem  
+let clickedButton
+let level = 0
 
 /*------------------------ Cached Element References ------------------------*/
-const buttonsElem = document.querySelectorAll(".button")
-
+const message = document.querySelector("message")
 /*-------------------------------- Functions --------------------------------*/
-function flashButton(){
-    for(let i = 0 ; i <buttonsElem.length; i++){
-        if(Number(buttonsElem[i].id) === FlashedButtonID){
-          buttonsElem[i].style.backgroundColor = "grey"
-          setTimeout(() => {
-          buttonsElem[i].style.backgroundColor = ""
-          }, 1000); 
-
-        }
-
-    }
+function init(){
+  buttonsElem = document.querySelectorAll(".button") 
+  flashButton()
+  buttonsElem.forEach(button => {
+    button.addEventListener("click", handleClick)
+  })
 }
 
+function createRandomNum(){
+  FlashedButtonID = Math.floor(Math.random() * 4)
+  return FlashedButtonID
+}
 
+function flashButton(){
+  FlashedButtonID = createRandomNum()
+  buttonsElem.forEach(button => {
+    if (Number(button.id) === FlashedButtonID) {
+      ComputerPattern.push(button.id)
+      console.log("computer = " + ComputerPattern)
+      button.style.backgroundColor = "grey"
+      setTimeout(() => {
+        button.style.backgroundColor = ""
+      }, 1000)
+    }
+  })
+}
 
-flashButton()
+function handleClick(event) {
+  console.log(event.target.id)
+  clickedButton = event.target.id
+  playerPattern.push(clickedButton)
+  console.log("player " + playerPattern)
+  if(clickedButton === FlashedButtonID){
+    level++
 
+  }
+  flashButton()
+  
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
-
 document.addEventListener("DOMContentLoaded", init)
-
-
-
-
