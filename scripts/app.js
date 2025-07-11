@@ -8,6 +8,7 @@ let clickedButton;
 let level = 1;
 let message;
 let playerPattern = [];
+let patternsMatch
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -23,6 +24,28 @@ function init() {
   buttonsElem.forEach((button) => {
     button.addEventListener("click", handleClick);
   });
+}
+function makeSound() {
+  if (FlashedButtonID === 0) {
+    const red = new Audio("/assets/red.mp3");
+    red.play();
+  } else if (FlashedButtonID === 1) {
+    const green = new Audio("/assets/green.mp3");
+    green.play();
+  } else if (FlashedButtonID === 2) {
+    const blue = new Audio("/assets/blue.mp3");
+    blue.play();
+  } else {
+    const yellow = new Audio("/assets/yellow.mp3");
+    yellow.play();
+  }
+  patternsMatch = checkPattern()
+  console.log(patternsMatch)
+  if(patternsMatch === false){
+    const GameOver = new Audio("/assets/wrong.mp3");
+    GameOver.play();
+  }
+  
 }
 
 function createRandomNum() {
@@ -47,7 +70,6 @@ function changeColor(button) {
     button.style.backgroundColor = "";
   }, 1000);
 }
-
 
 function flashNextButton() {
   if (playerPattern.length === ComputerPattern.length) {
@@ -80,7 +102,7 @@ function checkPattern() {
 
 function handleClick(event) {
   clickedButton = event.target.id;
-    changeColor(event.target)
+  changeColor(event.target);
   playerPattern.push(Number(clickedButton));
 
   const patternMatch = checkPattern();
@@ -92,14 +114,11 @@ function handleClick(event) {
   }
 
   if (playerPattern.length === ComputerPattern.length) {
-  
-     setTimeout(() => {
-      flashNextButton()
-  }, 1000);
+    setTimeout(() => {
+      flashNextButton();
+    }, 1000);
   }
 }
-
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.addEventListener("DOMContentLoaded", init);
