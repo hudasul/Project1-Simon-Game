@@ -48,6 +48,7 @@ function changeColor(button) {
   }, 1000);
 }
 
+
 function flashNextButton() {
   if (playerPattern.length === ComputerPattern.length) {
     const patternMatch = checkPattern();
@@ -77,9 +78,9 @@ function checkPattern() {
   return true;
 }
 
-
 function handleClick(event) {
   clickedButton = event.target.id;
+    changeColor(event.target)
   playerPattern.push(Number(clickedButton));
 
   const patternMatch = checkPattern();
@@ -91,9 +92,13 @@ function handleClick(event) {
   }
 
   if (playerPattern.length === ComputerPattern.length) {
-    flashNextButton();
+  
+     setTimeout(() => {
+      flashNextButton()
+  }, 1000);
   }
 }
+
 
 
 /*----------------------------- Event Listeners -----------------------------*/
