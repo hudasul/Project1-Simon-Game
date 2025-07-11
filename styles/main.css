@@ -44,10 +44,22 @@ body{
   background-color: grey;
 }
 
-#startBtn{
+#startBtn {
     margin-top: 10px;
     padding: 20px 50px;
     font-size: large;
     font-weight: bold;
     border-radius: 15px;
+}
+
+#quit{
+    margin-top: 10px;
+    padding: 20px 50px;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.hidden{
+    visibility: hidden;
 }
