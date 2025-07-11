@@ -25,36 +25,27 @@ function init() {
     button.addEventListener("click", handleClick);
   });
 }
-function makeSound() {
-  if (FlashedButtonID === 0) {
-    const red = new Audio("/assets/red.mp3");
-    red.play();
-  } else if (FlashedButtonID === 1) {
-    const green = new Audio("/assets/green.mp3");
-    green.play();
-  } else if (FlashedButtonID === 2) {
-    const blue = new Audio("/assets/blue.mp3");
-    blue.play();
-  } else {
-    const yellow = new Audio("/assets/yellow.mp3");
-    yellow.play();
-  }
-  patternsMatch = checkPattern()
-  console.log(patternsMatch)
-  if(patternsMatch === false){
-    const GameOver = new Audio("/assets/wrong.mp3");
-    GameOver.play();
-  }
-  
-}
+
 
 function createRandomNum() {
   FlashedButtonID = Math.floor(Math.random() * 4);
   return FlashedButtonID;
 }
 
+function makeSound() {
+   const sounds = [
+    "/assets/red.mp3",
+    "/assets/green.mp3",
+    "/assets/blue.mp3",
+    "/assets/yellow.mp3"
+  ];
+  const audio = new Audio(sounds[id]);
+  audio.play();
+}
+
 function flashButton() {
   FlashedButtonID = createRandomNum();
+  makeSound()
   console.log(FlashedButtonID);
   buttonsElem.forEach((button) => {
     if (Number(button.id) === FlashedButtonID) {
@@ -101,9 +92,10 @@ function checkPattern() {
 }
 
 function handleClick(event) {
-  clickedButton = event.target.id;
+  FlashedButtonID = event.target.id;
+  makeSound()
   changeColor(event.target);
-  playerPattern.push(Number(clickedButton));
+  playerPattern.push(Number(FlashedButtonID));
 
   const patternMatch = checkPattern();
   console.log(patternMatch);
