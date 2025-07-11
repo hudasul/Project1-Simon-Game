@@ -18,9 +18,8 @@ function init() {
   buttonsElem = document.querySelectorAll(".button");
 
   setTimeout(() => {
-        flashButton()
-      }, 2000);
-  
+    flashButton();
+  }, 1000);
 
   buttonsElem.forEach((button) => {
     button.addEventListener("click", handleClick);
@@ -46,13 +45,25 @@ function flashButton() {
   });
 }
 
+
+function flashNextButton() {
+  if (playerPattern.length === ComputerPattern.length) {
+  if (patternMatch === true) {
+    playerPattern = []
+     setTimeout(() => {
+      flashButton();
+     }, 1000);
+    console.log(ComputerPattern)
+    console.log(playerPattern)     
+    }
+  }
+}
+
 function checkPattern() {
   console.log(ComputerPattern);
   console.log(playerPattern);
   for (let i = 0; i < playerPattern; i++) {
     if (playerPattern[i] === Number(ComputerPattern[i])) {
-      message.textContent = "Level " + level;
-      playerPattern = [];
       return (patternMatch = true);
     } else {
       message.textContent = `You lost at level ${level}!`;
@@ -67,11 +78,13 @@ function handleClick(event) {
   checkPattern();
   console.log(patternMatch);
   if (patternMatch === true) {
-    flashButton();
+    flashNextButton();
   } else {
     return;
   }
 }
+
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.addEventListener("DOMContentLoaded", init);
