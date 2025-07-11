@@ -29,7 +29,7 @@ function init() {
   quitBtn.addEventListener("click", function(){
     init()
     message.textContent = `You have quited the game at level ${level}`
-    message.style.color = "black"
+    message.style.color = "white"
     startBtn.textContent = "Play Again"
     startBtn.disabled = false
   });
@@ -43,7 +43,7 @@ function startGame() {
 
   quitBtn.disabled = true
   message.textContent = `Level ${level}`;
-  message.style.color = "black"
+  message.style.color = "white"
   startBtn.disabled = true;
   startBtn.classList.remove("center-start-btn")
   quitBtn.classList.remove("hidden")
@@ -113,6 +113,7 @@ function handleClick(event) {
     message.style.color = "red" 
     const gameOver = new Audio("/assets/wrong.mp3");
     gameOver.play();
+    startBtn.classList.add("center-start-btn")
     startBtn.disabled = false
     startBtn.textContent = "Play Again"
     quitBtn.classList.add("hidden")   
