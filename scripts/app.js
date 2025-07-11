@@ -1,29 +1,49 @@
-/*-------------------------------- Constants --------------------------------*/
-const ComputerPattern = [];
-
-/*---------------------------- Variables (state) ----------------------------*/
 let level = 1;
 let playerPattern = [];
 let buttonsElem;
+let startBtn;
 let message;
 
-/*------------------------ Cached Element References ------------------------*/
+const ComputerPattern = [];
+
+/*------------------------------- Functions --------------------------------*/
 function init() {
+ 
+  startBtn = document.querySelector("#startBtn");
   message = document.querySelector("#message");
   buttonsElem = document.querySelectorAll(".button");
 
-  setTimeout(() => {
-    flashButton();
-  }, 1000);
-
-  buttonsElem.forEach((button) => {
+ 
+  buttonsElem.forEach(function (button) {
     button.addEventListener("click", handleClick);
   });
+
+ 
+  startBtn.addEventListener("click", startGame);
 }
 
-/*-------------------------------- Functions --------------------------------*/
-function createRandomNum() {
-  return Math.floor(Math.random() * 4);
+function startGame() {
+  ComputerPattern.length = 0;
+  playerPattern = [];
+  level = 1;
+  message.textContent = `Level ${level}`;
+  startBtn.disabled = true;
+
+  setTimeout(function () {
+    flashButton();
+  }, 1000);
+}
+
+function flashButton() {
+  const id = Math.floor(Math.random() * 4);
+  ComputerPattern.push(id);
+  makeSound(id);
+
+  buttonsElem.forEach(function (button) {
+    if (Number(button.id) === id) {
+      changeColor(button);
+    }
+  });
 }
 
 function makeSound(id) {
@@ -33,27 +53,15 @@ function makeSound(id) {
     "/assets/blue.mp3",
     "/assets/yellow.mp3"
   ];
-  const colorAudio = new Audio(sounds[id]);
-  colorAudio.play();
-}
-
-function flashButton() {
-  const id = createRandomNum();
-  ComputerPattern.push(id);
-  makeSound(id);
-
-  buttonsElem.forEach((button) => {
-    if (Number(button.id) === id) {
-      changeColor(button);
-    }
-  });
+  const audio = new Audio(sounds[id]);
+  audio.play()
 }
 
 function changeColor(button) {
   button.style.backgroundColor = "grey";
-  setTimeout(() => {
+  setTimeout(function () {
     button.style.backgroundColor = "";
-  }, 1000);
+  }, 500);
 }
 
 function checkPattern() {
@@ -66,20 +74,12 @@ function checkPattern() {
 }
 
 function flashNextButton() {
-  if (playerPattern.length === ComputerPattern.length) {
-    if (checkPattern()) {
-      level++;
-      message.textContent = `Level ${level}`;
-      playerPattern = [];
-      setTimeout(() => {
-        flashButton();
-      }, 1000);
-    } else {
-      message.textContent = `You lost at level ${level}!`;
-      const gameOverSound = new Audio("/assets/wrong.mp3");
-      gameOverSound.play();
-    }
-  }
+  level++;
+  message.textContent = `Level ${level}`;
+  playerPattern = [];
+  setTimeout(function () {
+    flashButton();
+  }, 1000);
 }
 
 function handleClick(event) {
@@ -88,19 +88,21 @@ function handleClick(event) {
   changeColor(event.target);
   playerPattern.push(clickedID);
 
-  if (!checkPattern()) {
-    message.textContent = `You lost at level ${level}!`
-    const gameOver= new Audio("/assets/wrong.mp3")
+  if (checkPattern() === false) {
+    message.textContent = `You lost at level ${level}!`;
+    message.style.color = "red" 
+    const gameOver = new Audio("/assets/wrong.mp3");
     gameOver.play();
+    startBtn.disabled = false;
     return;
   }
 
   if (playerPattern.length === ComputerPattern.length) {
-    setTimeout(() => {
+    setTimeout(function () {
       flashNextButton();
     }, 1000);
   }
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init)
