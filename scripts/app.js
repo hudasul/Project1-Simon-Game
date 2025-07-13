@@ -8,6 +8,7 @@ let message
 let playerPattern = []
 // an array the has th ids of the computer clicked buttons
 // buttens chossen randomly based on a random number
+let lamp
 const ComputerPattern = []
 
 
@@ -16,7 +17,9 @@ function init() {
   startBtn = document.querySelector("#startBtn")
   message = document.querySelector("#message")
   buttonsElem = document.querySelectorAll(".button")
+  lamp = document.querySelector("#help-lamp")
 
+  lamp.classList.remove("hidden")
   startBtn.addEventListener("click", startGame)
   startBtn.style.backgroundColor = "black"
 
@@ -26,6 +29,7 @@ function init() {
     message.textContent = `You have quited the game at level ${level}`
     message.style.color = "white"
     startBtn.textContent = "Play Again"
+    lamp.classList.add("hidden")
     startBtn.disabled = false
   })
 
@@ -35,11 +39,14 @@ function init() {
 }
 
 function startGame() {
+  lamp.classList.remove("hidden")
   startBtn.style.backgroundColor = "grey"
   quitBtn.style.backgroundColor = "black"
   buttonsElem.forEach(function (button) {
     button.addEventListener("click", handleClick)
   })
+
+  lamp.addEventListener("click",helpPlayer)
 
   ComputerPattern.length = 0
   playerPattern.length = 0
@@ -55,7 +62,6 @@ function startGame() {
 
 function creatRandomNumber() {
   id = Math.floor(Math.random() * 4)
-  console.log(id)
   return id
 }
 
@@ -102,6 +108,21 @@ function checkPattern() {
   return true
 }
 
+ function helpPlayer(){
+    lamp.classList.add("hidden")
+    let index = playerPattern.length
+    message.style.color = "white"
+    if(ComputerPattern[index] === 0){
+    message.textContent = "click red"
+    }else if(ComputerPattern[index] === 1){
+      message.textContent = "click green"
+    }else if(ComputerPattern[index] === 2){
+      message.textContent = "click blue"
+    }else{
+      message.textContent = "click yellow"
+    }
+}
+
 function flashNextButton() {
   level++;
   message.textContent = `Level ${level}`
@@ -124,12 +145,15 @@ function handleClick(event) {
   changeColor(event.target)
   playerPattern.push(clickedID)
 
+
   if (checkPattern() === false) {
     message.textContent = `You lost at level ${level}!`
     message.style.color = "red"
     startBtn.style.backgroundColor = "black"
     const gameOver = new Audio("/assets/wrong.mp3")
     gameOver.play()
+    
+    lamp.classList.add("hidden")
     startBtn.disabled = false
     startBtn.textContent = "Play Again"
   }
@@ -142,3 +166,6 @@ function handleClick(event) {
 }
 
 document.addEventListener("DOMContentLoaded", init)
+
+
+
