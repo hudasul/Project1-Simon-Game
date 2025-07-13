@@ -30,6 +30,7 @@ img{
 }
 
 nav{
+    margin-top: -15px;
     display: inline-flex;
     gap: 10px;
 }
