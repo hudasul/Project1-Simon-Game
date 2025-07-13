@@ -1,4 +1,4 @@
-Simone Game
+Simon Game
 
 Game description:
 Simone game is based on memory and remembering patterns, there are 4 colors which are :
