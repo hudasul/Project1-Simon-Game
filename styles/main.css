@@ -3,10 +3,25 @@ body{
     text-align: center;
 
 }
+h1{
+   font-family: 'Games', sans-serif; 
+   color: white;
+   font-size: 50px;
 
-h1, h2{
-    color: white;
 }
+
+h2{
+    margin-top: -15px;
+    color: white;
+
+}
+
+.michroma-regular {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 .button-container{
     width: 430px;
