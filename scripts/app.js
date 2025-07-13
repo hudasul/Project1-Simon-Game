@@ -22,27 +22,27 @@ function init() {
   message = document.querySelector("#message")
   buttonsElem = document.querySelectorAll(".button")
 
- 
-  buttonsElem.forEach(function (button) {
-    button.addEventListener("click", handleClick)
-  })
-
- 
   startBtn.addEventListener("click", startGame)
   quitBtn.addEventListener("click", function(){
     init()
     message.textContent = `You have quited the game at level ${level}`
     message.style.color = "white"
 
-    disableButtonClick()
+    // disableButtonClick()
 
     startBtn.textContent = "Play Again"
     startBtn.disabled = false
-  });
+  })
+
+  disableButtonClick()
 }
 
 function startGame() {
   
+    buttonsElem.forEach(function (button) {
+    button.addEventListener("click", handleClick)
+    })
+
   ComputerPattern.length = 0
   playerPattern = []
   level = 1
