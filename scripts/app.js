@@ -4,8 +4,10 @@ let buttonsElem
 let startBtn
 let quitBtn
 let message
+// an array the has the ids of the player clicked buttons
 let playerPattern = []
-
+// an array the has th ids of the computer clicked buttons
+// buttens chossen randomly based on a random number
 const ComputerPattern = []
 
 
@@ -27,6 +29,8 @@ function init() {
     startBtn.disabled = false
   })
 
+  // player not allowed to click the colors unliss he click start button
+  // also, player cant do that when he quit the game
   disableButtonClick()
 }
 
@@ -38,7 +42,7 @@ function startGame() {
   })
 
   ComputerPattern.length = 0
-  playerPattern = []
+  playerPattern.length = 0
   level = 1
 
   message.textContent = `Level ${level}`
@@ -58,6 +62,7 @@ function creatRandomNumber() {
 function flashButton() {
   id = creatRandomNumber()
   ComputerPattern.push(id)
+  // choose sound from sounds array based on the id/index of the button 
   makeSound(id)
 
   buttonsElem.forEach(function (button) {
@@ -88,6 +93,8 @@ function changeColor(button) {
 function checkPattern() {
   for (let i = 0; i < playerPattern.length; i++) {
     if (playerPattern[i] !== ComputerPattern[i]) {
+      // player not allowed to click on the colors if he lost
+      //player has to click "play again" to be able to click/play again
       disableButtonClick()
       return false
     }
