@@ -33,6 +33,9 @@ function init() {
     init()
     message.textContent = `You have quited the game at level ${level}`
     message.style.color = "white"
+
+    disableButtonClick()
+
     startBtn.textContent = "Play Again"
     startBtn.disabled = false
   });
@@ -89,12 +92,13 @@ function changeColor(button) {
   button.style.backgroundColor = "grey";
   setTimeout(function () {
     button.style.backgroundColor = "";
-  }, 1000);
+  }, 500);
 }
 
 function checkPattern() {
   for (let i = 0; i < playerPattern.length; i++) {
     if (playerPattern[i] !== ComputerPattern[i]) {
+      disableButtonClick()
       return false;
     }
   }
@@ -109,6 +113,12 @@ function flashNextButton() {
   setTimeout(function () {
     flashButton()
   }, 1000)
+}
+
+function disableButtonClick(){
+   buttonsElem.forEach(function (button) {
+    button.removeEventListener("click", handleClick)
+  })
 }
 
 function handleClick(event) {
@@ -126,6 +136,7 @@ function handleClick(event) {
     startBtn.disabled = false
     startBtn.textContent = "Play Again"
     quitBtn.classList.add("hidden")   
+    
     return
   }
 
