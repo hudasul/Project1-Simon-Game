@@ -1,31 +1,34 @@
-let level = 1;
-let playerPattern = [];
-let buttonsElem;
-let startBtn;
-let message;
+let id
+let level = 1
+let buttonsElem
+let startBtn
 let quitBtn
-const ComputerPattern = [];
+let message
+let playerPattern = []
+
+
+const ComputerPattern = []
 
 /*------------------------------- Functions --------------------------------*/
 
 
 function init() {
-  quitBtn = document.querySelector("#quit");
-  startBtn = document.querySelector("#startBtn");
+  quitBtn = document.querySelector("#quit")
+  startBtn = document.querySelector("#startBtn")
   quitBtn.classList.add("hidden")
   startBtn.classList.add("center-start-btn")
   
 
-  message = document.querySelector("#message");
-  buttonsElem = document.querySelectorAll(".button");
+  message = document.querySelector("#message")
+  buttonsElem = document.querySelectorAll(".button")
 
  
   buttonsElem.forEach(function (button) {
-    button.addEventListener("click", handleClick);
-  });
+    button.addEventListener("click", handleClick)
+  })
 
  
-  startBtn.addEventListener("click", startGame);
+  startBtn.addEventListener("click", startGame)
   quitBtn.addEventListener("click", function(){
     init()
     message.textContent = `You have quited the game at level ${level}`
@@ -37,26 +40,32 @@ function init() {
 
 function startGame() {
   
-  ComputerPattern.length = 0;
-  playerPattern = [];
-  level = 1;
+  ComputerPattern.length = 0
+  playerPattern = []
+  level = 1
 
   quitBtn.disabled = true
-  message.textContent = `Level ${level}`;
+  message.textContent = `Level ${level}`
   message.style.color = "white"
-  startBtn.disabled = true;
+  startBtn.disabled = true
   startBtn.classList.remove("center-start-btn")
   quitBtn.classList.remove("hidden")
   quitBtn.disabled = false
   setTimeout(function () {
-    flashButton();
-  }, 1000);
+    flashButton()
+  }, 1000)
+}
+
+function creatRandomNumber(){
+   id = Math.floor(Math.random() * 4)
+   console.log(id)
+   return id
 }
 
 function flashButton() {
-  const id = Math.floor(Math.random() * 4);
-  ComputerPattern.push(id);
-  makeSound(id);
+  id = creatRandomNumber()
+  ComputerPattern.push(id)
+  makeSound(id)
 
   buttonsElem.forEach(function (button) {
     if (Number(button.id) === id) {
@@ -71,7 +80,7 @@ function makeSound(id) {
     "/assets/green.mp3",
     "/assets/blue.mp3",
     "/assets/yellow.mp3"
-  ];
+  ]
   const audio = new Audio(sounds[id]);
   audio.play()
 }
@@ -80,7 +89,7 @@ function changeColor(button) {
   button.style.backgroundColor = "grey";
   setTimeout(function () {
     button.style.backgroundColor = "";
-  }, 500);
+  }, 1000);
 }
 
 function checkPattern() {
@@ -93,37 +102,37 @@ function checkPattern() {
 }
 
 function flashNextButton() {
-  level++;
-  message.textContent = `Level ${level}`;
+  level++
+  message.textContent = `Level ${level}`
   message.style.color = "green"
-  playerPattern = [];
+  playerPattern = []
   setTimeout(function () {
-    flashButton();
-  }, 1000);
+    flashButton()
+  }, 1000)
 }
 
 function handleClick(event) {
-  const clickedID = Number(event.target.id);
-  makeSound(clickedID);
-  changeColor(event.target);
-  playerPattern.push(clickedID);
+  const clickedID = Number(event.target.id)
+  makeSound(clickedID)
+  changeColor(event.target)
+  playerPattern.push(clickedID)
 
   if (checkPattern() === false) {
-    message.textContent = `You lost at level ${level}!`;
+    message.textContent = `You lost at level ${level}!`
     message.style.color = "red" 
-    const gameOver = new Audio("/assets/wrong.mp3");
-    gameOver.play();
+    const gameOver = new Audio("/assets/wrong.mp3")
+    gameOver.play()
     startBtn.classList.add("center-start-btn")
     startBtn.disabled = false
     startBtn.textContent = "Play Again"
     quitBtn.classList.add("hidden")   
-    return;
+    return
   }
 
   if (playerPattern.length === ComputerPattern.length) {
     setTimeout(function () {
-      flashNextButton();
-    }, 1000);
+      flashNextButton()
+    }, 1000)
   }
 }
 
