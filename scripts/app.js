@@ -15,10 +15,6 @@ const ComputerPattern = []
 function init() {
   quitBtn = document.querySelector("#quit")
   startBtn = document.querySelector("#startBtn")
-  quitBtn.classList.add("hidden")
-  startBtn.classList.add("center-start-btn")
-  
-
   message = document.querySelector("#message")
   buttonsElem = document.querySelectorAll(".button")
 
@@ -31,12 +27,12 @@ function init() {
     startBtn.textContent = "Play Again"
     startBtn.disabled = false
   })
-
+  
+  quitBtn.disabled = true
   disableButtonClick()
 }
 
 function startGame() {
-
     buttonsElem.forEach(function (button) {
     button.addEventListener("click", handleClick)
     })
@@ -49,8 +45,6 @@ function startGame() {
   message.textContent = `Level ${level}`
   message.style.color = "white"
   startBtn.disabled = true
-  startBtn.classList.remove("center-start-btn")
-  quitBtn.classList.remove("hidden")
   quitBtn.disabled = false
   setTimeout(function () {
     flashButton()
@@ -130,10 +124,9 @@ function handleClick(event) {
     message.style.color = "red" 
     const gameOver = new Audio("/assets/wrong.mp3")
     gameOver.play()
-    startBtn.classList.add("center-start-btn")
     startBtn.disabled = false
-    startBtn.textContent = "Play Again"
-    quitBtn.classList.add("hidden")   
+    quitBtn.disabled = true
+    startBtn.textContent = "Play Again" 
     
     return
   }
@@ -147,4 +140,3 @@ function handleClick(event) {
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.addEventListener("DOMContentLoaded", init)
-

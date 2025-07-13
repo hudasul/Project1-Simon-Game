@@ -1,6 +1,7 @@
 body{
     background-color: black;
     text-align: center;
+
 }
 
 h1, h2{
@@ -8,11 +9,10 @@ h1, h2{
 }
 
 .button-container{
-    width: 420px;
+    width: 430px;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 2em 1em;
-   
     margin: 0 auto;
     padding: 10px;
 }
@@ -58,13 +58,4 @@ h1, h2{
     font-size: large;
     font-weight: bold;
     border-radius: 15px;
-}
-
-.center-start-btn{
-    margin-left: 200px;
-
-}
-
-.hidden{
-    visibility: hidden;
 }
