@@ -23,13 +23,11 @@ function init() {
   buttonsElem = document.querySelectorAll(".button")
 
   startBtn.addEventListener("click", startGame)
+  
   quitBtn.addEventListener("click", function(){
     init()
     message.textContent = `You have quited the game at level ${level}`
     message.style.color = "white"
-
-    // disableButtonClick()
-
     startBtn.textContent = "Play Again"
     startBtn.disabled = false
   })
@@ -38,7 +36,7 @@ function init() {
 }
 
 function startGame() {
-  
+
     buttonsElem.forEach(function (button) {
     button.addEventListener("click", handleClick)
     })
