@@ -16,20 +16,23 @@ function init() {
   buttonsElem = document.querySelectorAll(".button")
 
   startBtn.addEventListener("click", startGame)
+  startBtn.style.backgroundColor = "black"
 
   quitBtn.addEventListener("click", function () {
     init()
+    quitBtn.style.backgroundColor = "grey"
     message.textContent = `You have quited the game at level ${level}`
     message.style.color = "white"
     startBtn.textContent = "Play Again"
     startBtn.disabled = false
   })
 
-  quitBtn.disabled = true
   disableButtonClick()
 }
 
 function startGame() {
+  startBtn.style.backgroundColor = "grey"
+  quitBtn.style.backgroundColor = "black"
   buttonsElem.forEach(function (button) {
     button.addEventListener("click", handleClick)
   })
@@ -38,11 +41,9 @@ function startGame() {
   playerPattern = []
   level = 1
 
-  quitBtn.disabled = true
   message.textContent = `Level ${level}`
   message.style.color = "white"
   startBtn.disabled = true
-  quitBtn.disabled = false
   setTimeout(function () {
     flashButton();
   }, 1000);
@@ -119,10 +120,10 @@ function handleClick(event) {
   if (checkPattern() === false) {
     message.textContent = `You lost at level ${level}!`
     message.style.color = "red"
+    startBtn.style.backgroundColor = "black"
     const gameOver = new Audio("/assets/wrong.mp3")
     gameOver.play()
     startBtn.disabled = false
-    quitBtn.disabled = true
     startBtn.textContent = "Play Again"
   }
 
