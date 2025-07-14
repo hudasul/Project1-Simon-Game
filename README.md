@@ -3,7 +3,7 @@
 <h1>Simon Game</h1>
 
 <h2>Game description:</h2>
-Simone game is based on memory and remembering patterns, there are 4 colors which are :
+Simon game is based on memory and remembering patterns, there are 4 colors which are :
 <ul>
   <li>red</li>
   <li>green</li>
