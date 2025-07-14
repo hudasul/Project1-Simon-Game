@@ -23,3 +23,6 @@ if player click the wrong pattern he will lose and a message will be displayed s
   <li>JavaScript</li>
 </ul>
 
+<h2>Planned future enhancements:</h2>
+Enable the player to use help "by clicking the lamp img" more often, by giving one extra halp each time the player passes 10 levels
+
