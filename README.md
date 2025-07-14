@@ -1,4 +1,5 @@
 Simon Game
+<img width="1920" height="868" alt="simon game" src="https://github.com/user-attachments/assets/8d974b6e-f5c6-44e1-b51e-c80507a86139" />
 
 Game description:
 Simone game is based on memory and remembering patterns, there are 4 colors which are :
