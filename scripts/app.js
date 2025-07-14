@@ -4,15 +4,21 @@ let buttonsElem
 let startBtn
 let quitBtn
 let message
+
 // an array the has the ids of the player clicked buttons
 let playerPattern = []
+
 // an array the has th ids of the computer clicked buttons
 // buttens chossen randomly based on a random number
-let lamp
 const ComputerPattern = []
 
+// a lampimage thet offers help to the player once it is clicked
+// help the player one time only throughout the game
+let lamp
 
 function init() {
+
+  // cached elements references
   quitBtn = document.querySelector("#quit")
   startBtn = document.querySelector("#startBtn")
   message = document.querySelector("#message")
@@ -37,6 +43,9 @@ function init() {
   // also, player cant do that when he quit the game
   disableButtonClick()
 }
+
+
+//functions
 
 function startGame() {
   lamp.classList.remove("hidden")
@@ -165,6 +174,8 @@ function handleClick(event) {
   }
 }
 
+
+// event listen, calling the "init" function as the page load
 document.addEventListener("DOMContentLoaded", init)
 
 
