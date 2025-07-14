@@ -16,6 +16,8 @@ when a player goes to the next level another color will be randomly selected by 
 
 if player click the wrong pattern he will lose and a message will be displayed showing which level he reached
 
+<h2>Attributions:</h2>
+four audios wher used for this game and one lamp image , thery can be found in this link <a href="https://github.com/hudasul/Project1-Simon-Game/tree/main/assets">assets</a>
 <h2>Technologies used: </h2>
 <ul>
   <li>HTML</li>
