@@ -23,6 +23,7 @@ function init() {
   lamp = document.querySelector("#help-lamp");
 
   lamp.classList.remove("hidden");
+  message.style.marginLeft = "5px"
   helpMode = false;
 
   startBtn.addEventListener("click", startGame);
@@ -35,6 +36,7 @@ function init() {
     message.style.color = "white";
     startBtn.textContent = "Play Again";
     lamp.classList.add("hidden");
+    message.style.marginLeft = "-30px"
     startBtn.disabled = false;
   });
 
@@ -43,6 +45,7 @@ function init() {
 
 function startGame() {
   lamp.classList.remove("hidden");
+  message.style.marginLeft = "5px"
   startBtn.style.backgroundColor = "grey";
   quitBtn.style.backgroundColor = "black";
 
@@ -111,16 +114,17 @@ function checkPattern() {
 
 function helpPlayer() {
   lamp.classList.add("hidden");
+  message.style.marginLeft = "-25px"
   helpMode = true;
   updateHelpMessage();
 }
 
 function updateHelpMessage() {
-  if (helpMode === false){
-    return
-  } 
+  if (helpMode === false) {
+    return;
+  }
 
-  const colors= ["Red", "Green", "Blue", "Yellow"];
+  const colors = ["Red", "Green", "Blue", "Yellow"];
   const index = playerPattern.length;
 
   if (index < ComputerPattern.length) {
@@ -157,6 +161,7 @@ function handleClick(event) {
     startBtn.style.backgroundColor = "black";
     new Audio("/assets/wrong.mp3").play();
     lamp.classList.add("hidden");
+    message.style.marginLeft = "-37px"
     startBtn.disabled = false;
     startBtn.textContent = "Play Again";
     return;
@@ -166,11 +171,14 @@ function handleClick(event) {
     updateHelpMessage();
   }
 
-  if (checkPattern() === true && playerPattern.length === ComputerPattern.length) {
+  if (
+    checkPattern() === true &&
+    playerPattern.length === ComputerPattern.length
+  ) {
     helpMode = false;
     setTimeout(flashNextButton, 1000);
   }
 }
 
 // Load game when page opens
-document.addEventListener("DOMContentLoaded", init)
+document.addEventListener("DOMContentLoaded", init);
