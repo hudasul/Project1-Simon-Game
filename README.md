@@ -76,6 +76,14 @@ In order to find out which color the player should click I useda variable called
 </br>
 so basiclly "updateHelpMessage" will first check the help mode if its true it wiill go to the computerPattern array and check the index which equals the playerPattern array length, in order to git the "id" of the color that should be clicked, then use the colors array to get the "name" of the color that should be clicked, so it is like saying "colors[id of the color player should click]"
 
+<h4>Player not able to click the color unless he is playing the game</h4>
+I made this finctionality using "disableButtonClick" after I noticed that i could click the colors even before I start the game or after I lose or quit.
+</br>
+</br>
+The "disableButtonClick" function simply removes the evntListeners from the colors dives and then I called this function when I nedded which is in case the Player lose, quit the game, or  have not started the game yet. I called iit in the "init function" where player have not started playing or have quit the game, called it in "checkPattern" function in case computer and player patterns mismatch.
+</br>
+</br>
+
 
 <h2>Planned future enhancements:</h2>
 Enable the player to use help "by clicking the lamp img" more often, by giving one extra halp each time the player passes 10 levels.
