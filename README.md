@@ -3,7 +3,7 @@
 <img width="1920" height="868" alt="simon game" src="https://github.com/user-attachments/assets/8d974b6e-f5c6-44e1-b51e-c80507a86139" />
 
 <h2>Introduction</h2>
-I was asked to bulid a game for my project, Hence i choosed the simon game, in order to play the game click <a hreg="https://hudasul.github.io/Project1-Simon-Game/">here</a>
+I was asked to bulid a game for my project, Hence i choosed the simon game, in order to play the game click <a href="https://hudasul.github.io/Project1-Simon-Game/">here</a>
 
 <h2>Game Description:</h2>
 Simon game is based on memory and remembering patterns, there are 4 colors which are :
