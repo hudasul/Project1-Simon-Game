@@ -28,37 +28,35 @@ four audios where used for this game and one lamp image , they can be found in t
 </ul>
 
 <h2>Game Mechanics</h2>
-<h3>Starting The Game</h3>
+<h4>Starting The Game</h4>
 First I created a start button in html, then using JavaScript I added an eventListener that gets trigired if the start button is clicked. basiclly if the button is clicked function "startGame is called" and the game start, when the start button is clicked it turns to grey indecating that it got clicked.
 
 Also, in case the player quit the game "using quit buttun" or if he lose the game. the start button text changes from "Start Game" to "Play Again", so if the player wnted to play again he can simply clicked the button.
 
-<h3>Quit The Game</h3>
+<h4>Quit The Game</h4>
 This button is created in html also, then using JavaScript I added an eventListener that gets trigired if it got clicked. when this button is added the message that display the level the player is on turn to "you quitted the game at level (level player reached)". in order to that I used DOM to define "message" using h2 id which is "message" and then when the quit button is clicked I changed the messsage content using "message.textContent".
 
-<h3>Creating computer pattern</h3>
+<h4>Creating computer pattern</h4>
 The computer pattern is basiccliy the pattern of colors the player should click to win a level. In order to that I made a function called "creatRandomNumber" that creates a random number from 0 to 3, I also assigned an id to each on of the colors divs so when a random number is created the color whith the same id as the random number change color to grey for 500ms.
 
-<h3>Creating Player pattern</h3>
+<h4>Creating Player pattern</h4>
 Player pattern is an array of the ids of the colors the player has clicked, it used for determining win or lose. In order to know which color the player clicked I created "handleClick" that uses "event.target.id" to know what is the id of the color the player did click, then using "playerPattern.push(clickedID)" i pushed the clicked color id into the player pattern.
 
 At the beggining of each level the player pattern gets emepty "length = 0" because the player have to click the correct colors all ovwr again on each level.
 
+In order to change color I created "changeColor" and insid it i used setTimeout to change the color of the div from its original color to grey for 500ms.
 
-in order to change color i created "changeColor" and insid it i used setTimeout to change the color of the div from its original color to grey for 500ms.
-
-<h3>Make sounds</h3>
+<h4>Make sounds</h4>
 when a color is clicked a sound will be heard, to do that i used 4 diffrent audios one for each color. I created a function called "makeSound" that takes the id of the color as an argument and then use ann array called "sounds" to play the color audio.
-
 
 sounds array length is 4, if the id is 0 then the audio at sounds[0] will play and same goes with the other colors. for the colors ids red has "id=0", green has "id =1", blue has "id=2", and Yellow has "id=3", those id are specifed in the html file "index.html"
 
 Also in case the player lose, a sound will be played, for that I made a function called checkPattern that I will explain down bellow
 
-<h3>Win and lose</h3>
+<h4>Win and lose</h4>
 In order to chevk if a player has won a level i created a function called "checkPattern" that uses a  for loop to go through the playerPattern and check if the as the computer pattern. if computer and player patterns are the same the player win the level and goest to the next one, else he lose and the message changes to "You lost at level (number of the level the player lost)!"
 
-the "checkPattern" function returns "true" or "false" and it is called inside handleClick function so that once the player click the wrong pattern he immeditly lose. Also if "checkPattern" return true a function named "flashNextButton" is called and it simply select another color and add it to the computer pattern by calling "flashButton" function but before that it will increase the level number by one using "level++" and shows a message in the color green showing the next level indecationg that the player have won and passed the previous level.
+The "checkPattern" function returns "true" or "false" and it is called inside handleClick function so that once the player click the wrong pattern he immeditly lose. Also if "checkPattern" return true a function named "flashNextButton" is called and it simply select another color and add it to the computer pattern by calling "flashButton" function but before that it will increase the level number by one using "level++" and shows a message in the color green showing the next level indecationg that the player have won and passed the previous level.
 
 
 <h2>Planned future enhancements:</h2>
