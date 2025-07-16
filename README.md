@@ -58,6 +58,15 @@ In order to chevk if a player has won a level i created a function called "check
 
 The "checkPattern" function returns "true" or "false" and it is called inside handleClick function so that once the player click the wrong pattern he immeditly lose. Also if "checkPattern" return true a function named "flashNextButton" is called and it simply select another color and add it to the computer pattern by calling "flashButton" function but before that it will increase the level number by one using "level++" and shows a message in the color green showing the next level indecationg that the player have won and passed the previous level.
 
+<h4>Help Player Functionality</h4>
+I allowed the player to get help once only throughout the game, so he can get help in one level only. In  order to do that i added an img of a lamp and the added an EventListener to it using JavaScript, once the lamp is click it disapear and never appear again throughout the game. Now in order to help the player I created "helPlayer function" that has the responsibility of hidding the lamp using "lamp.classList.add("hidden")" I created a class in css called "hidden" that I added to the lamp once it clicked to make it disappear.
+
+I also created a boolean type variable called "helpMode" that equals true if the lamp is clicked, if helpMode is true function named "updateHelpMessage" will display a message telling the player which colors he should click to win the level
+
+In order to find out which color the player should click I useda variable called "index" which equlas the size of the playerPattern array, the I used a variable called "nextColor" that represent the name of the color a player should click using "colors[ComputerPattern[index]]" the colors array include the colors names "Red", "Green", "Blue", and "Yellow". 
+
+so basiclly "updateHelpMessage" will first check the help mode if its true it wiill go to the computerPattern array and check the index which equals the playerPattern array length, in order to git the "id" of the color that should be clicked, then use the colors array to get the "name" of the color that should be clicked, so it is like saying "colors[id of the color player should click]"
+
 
 <h2>Planned future enhancements:</h2>
 Enable the player to use help "by clicking the lamp img" more often, by giving one extra halp each time the player passes 10 levels.
