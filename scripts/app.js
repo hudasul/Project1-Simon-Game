@@ -6,14 +6,9 @@ let quitBtn
 let message
 let lamp
 
-// used for hel player function
 let helpMode = false
-
-// an array that has the ids of the player clicked buttons
 let playerPattern = []
-
-// an array that has the ids of the computer clicked buttons
-const ComputerPattern = []
+const computerPattern = []
 
 function init() {
   quitBtn = document.querySelector("#quit")
@@ -32,7 +27,7 @@ function init() {
   quitBtn.addEventListener("click", function () {
     init()
     quitBtn.style.backgroundColor = "grey"
-    message.textContent = `You quited the game at level ${level}`
+    message.textContent = `You quit the game at level ${level}`
     message.style.color = "white"
     startBtn.textContent = "Play Again"
     lamp.classList.add("hidden")
@@ -49,13 +44,13 @@ function startGame() {
   startBtn.style.backgroundColor = "grey"
   quitBtn.style.backgroundColor = "black"
 
-  buttonsElem.forEach(function (button) {
+  buttonsElem.forEach(button => {
     button.addEventListener("click", handleClick)
   })
 
   lamp.addEventListener("click", helpPlayer)
 
-  ComputerPattern.length = 0
+  computerPattern.length = 0
   playerPattern.length = 0
   level = 1
   helpMode = false
@@ -67,17 +62,17 @@ function startGame() {
   setTimeout(flashButton, 1000)
 }
 
-function creatRandomNumber() {
+function createRandomNumber() {
   id = Math.floor(Math.random() * 4)
   return id
 }
 
 function flashButton() {
-  id = creatRandomNumber()
-  ComputerPattern.push(id)
+  id = createRandomNumber()
+  computerPattern.push(id)
   makeSound(id)
 
-  buttonsElem.forEach(function (button) {
+  buttonsElem.forEach(button => {
     if (Number(button.id) === id) {
       changeColor(button)
     }
@@ -86,10 +81,10 @@ function flashButton() {
 
 function makeSound(id) {
   const sounds = [
-    "/assets/red.mp3",
-    "/assets/green.mp3",
-    "/assets/blue.mp3",
-    "/assets/yellow.mp3",
+    "assets/red.mp3",
+    "assets/green.mp3",
+    "assets/blue.mp3",
+    "assets/yellow.mp3"
   ]
   const audio = new Audio(sounds[id])
   audio.play()
@@ -97,14 +92,14 @@ function makeSound(id) {
 
 function changeColor(button) {
   button.style.backgroundColor = "grey"
-  setTimeout(function () {
+  setTimeout(() => {
     button.style.backgroundColor = ""
   }, 500)
 }
 
 function checkPattern() {
   for (let i = 0; i < playerPattern.length; i++) {
-    if (playerPattern[i] !== ComputerPattern[i]) {
+    if (playerPattern[i] !== computerPattern[i]) {
       disableButtonClick()
       return false
     }
@@ -120,15 +115,13 @@ function helpPlayer() {
 }
 
 function updateHelpMessage() {
-  if (helpMode === false) {
-    return
-  }
+  if (!helpMode) return
 
   const colors = ["Red", "Green", "Blue", "Yellow"]
   const index = playerPattern.length
 
-  if (index < ComputerPattern.length) {
-    const nextColor = colors[ComputerPattern[index]]
+  if (index < computerPattern.length) {
+    const nextColor = colors[computerPattern[index]]
     message.textContent = `Click ${nextColor}`
     message.style.color = "white"
   }
@@ -144,7 +137,7 @@ function flashNextButton() {
 }
 
 function disableButtonClick() {
-  buttonsElem.forEach(function (button) {
+  buttonsElem.forEach(button => {
     button.removeEventListener("click", handleClick)
   })
 }
@@ -155,11 +148,11 @@ function handleClick(event) {
   changeColor(event.target)
   playerPattern.push(clickedID)
 
-  if (checkPattern() === false) {
+  if (!checkPattern()) {
     message.textContent = `You lost at level ${level}!`
     message.style.color = "red"
     startBtn.style.backgroundColor = "black"
-    new Audio("/assets/wrong.mp3").play()
+    new Audio("assets/wrong.mp3").play()
     lamp.classList.add("hidden")
     message.style.marginLeft = "-37px"
     startBtn.disabled = false
@@ -167,18 +160,12 @@ function handleClick(event) {
     return
   }
 
-  if (helpMode === true) {
-    updateHelpMessage()
-  }
+  if (helpMode) updateHelpMessage()
 
-  if (
-    checkPattern() === true &&
-    playerPattern.length === ComputerPattern.length
-  ) {
+  if (checkPattern() && playerPattern.length === computerPattern.length) {
     helpMode = false
     setTimeout(flashNextButton, 1000)
   }
 }
 
-// Load game when page opens
 document.addEventListener("DOMContentLoaded", init)
