@@ -5,6 +5,7 @@ let startBtn
 let quitBtn
 let message
 let lamp
+let hasShownIntro = false
 
 let helpMode = false
 let playerPattern = []
@@ -17,6 +18,20 @@ function init() {
   buttonsElem = document.querySelectorAll(".button")
   lamp = document.querySelector("#help-lamp")
 
+  const startMessageDiv = document.querySelector("#startMessage")
+  const okBtn = document.querySelector("#okBtn")
+
+  if (!hasShownIntro) {
+    setTimeout(() => {
+      startMessageDiv.style.display = "block"
+      hasShownIntro = true
+    }, 1000)
+  }
+
+  okBtn.addEventListener("click", () => {
+    startMessageDiv.style.display = "none"
+  })
+
   lamp.classList.remove("hidden")
   message.style.marginLeft = "5px"
   helpMode = false
@@ -25,7 +40,6 @@ function init() {
   startBtn.style.backgroundColor = "black"
 
   quitBtn.addEventListener("click", function () {
-    init()
     quitBtn.style.backgroundColor = "grey"
     message.textContent = `You quit the game at level ${level}`
     message.style.color = "white"
@@ -33,6 +47,7 @@ function init() {
     lamp.classList.add("hidden")
     message.style.marginLeft = "-30px"
     startBtn.disabled = false
+    disableButtonClick()
   })
 
   disableButtonClick()
