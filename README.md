@@ -84,6 +84,14 @@ The "disableButtonClick" function simply removes the evntListeners from the colo
 </br>
 </br>
 
+<h4>Challenges</h4>
+Creatin helpPlayer function was the hardest part for me at first I was able to get a message to display which color should be clicked, but I also wanted the mesaage to change after the player clicke the color.
+</br>
+</br>
+For example the player should click red, blue, and green, I was able to display a message saying "Click red" but even after the player click red the message did not change till the player click blue and green to win the level.
+</br>
+</br>
+But thankfull i was able to fix that and now the message shows which color to click on at a time so first it would show "click red" then after player do actually click red, message changes to "click blue" and so on, till the player finish clicking the right colors and wins the level.
 
 <h2>Planned future enhancements:</h2>
 Enable the player to use help "by clicking the lamp img" more often, by giving one extra halp each time the player passes 10 levels.
