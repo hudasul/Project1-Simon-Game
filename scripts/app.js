@@ -44,6 +44,7 @@ function init() {
     message.textContent = `You quit the game at level ${level}`
     message.style.color = "white"
     startBtn.textContent = "Play Again"
+    startBtn.style.backgroundColor = "black"
     lamp.classList.add("hidden")
     message.style.marginLeft = "-30px"
     startBtn.disabled = false
