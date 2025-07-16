@@ -30,7 +30,7 @@ four audios where used for this game and one lamp image , they can be found in t
 <h2>Game Mechanics</h2>
 <h4>Starting The Game</h4>
 First I created a start button in html, then using JavaScript I added an eventListener that gets trigired if the start button is clicked. basiclly if the button is clicked function "startGame is called" and the game start, when the start button is clicked it turns to grey indecating that it got clicked.
-
+</br>
 Also, in case the player quit the game "using quit buttun" or if he lose the game. the start button text changes from "Start Game" to "Play Again", so if the player wnted to play again he can simply clicked the button.
 
 <h4>Quit The Game</h4>
@@ -41,30 +41,30 @@ The computer pattern is basiccliy the pattern of colors the player should click 
 
 <h4>Creating Player pattern</h4>
 Player pattern is an array of the ids of the colors the player has clicked, it used for determining win or lose. In order to know which color the player clicked I created "handleClick" that uses "event.target.id" to know what is the id of the color the player did click, then using "playerPattern.push(clickedID)" i pushed the clicked color id into the player pattern.
-
+</br>
 At the beggining of each level the player pattern gets emepty "length = 0" because the player have to click the correct colors all ovwr again on each level.
-
+</br>
 In order to change color I created "changeColor" and insid it i used setTimeout to change the color of the div from its original color to grey for 500ms.
 
 <h4>Make sounds</h4>
 when a color is clicked a sound will be heard, to do that i used 4 diffrent audios one for each color. I created a function called "makeSound" that takes the id of the color as an argument and then use ann array called "sounds" to play the color audio.
-
+</br>
 sounds array length is 4, if the id is 0 then the audio at sounds[0] will play and same goes with the other colors. for the colors ids red has "id=0", green has "id =1", blue has "id=2", and Yellow has "id=3", those id are specifed in the html file "index.html"
-
+</br>
 Also in case the player lose, a sound will be played, for that I made a function called checkPattern that I will explain down bellow
 
 <h4>Win and lose</h4>
 In order to chevk if a player has won a level i created a function called "checkPattern" that uses a  for loop to go through the playerPattern and check if the as the computer pattern. if computer and player patterns are the same the player win the level and goest to the next one, else he lose and the message changes to "You lost at level (number of the level the player lost)!"
-
+</br>
 The "checkPattern" function returns "true" or "false" and it is called inside handleClick function so that once the player click the wrong pattern he immeditly lose. Also if "checkPattern" return true a function named "flashNextButton" is called and it simply select another color and add it to the computer pattern by calling "flashButton" function but before that it will increase the level number by one using "level++" and shows a message in the color green showing the next level indecationg that the player have won and passed the previous level.
 
 <h4>Help Player Functionality</h4>
-I allowed the player to get help once only throughout the game, so he can get help in one level only. In  order to do that i added an img of a lamp and the added an EventListener to it using JavaScript, once the lamp is click it disapear and never appear again throughout the game. Now in order to help the player I created "helPlayer function" that has the responsibility of hidding the lamp using "lamp.classList.add("hidden")" I created a class in css called "hidden" that I added to the lamp once it clicked to make it disappear.
-
+I allowed the player to get help once only throughout the game, so he can get help in one level only. In  order to do that i added an img of a lamp and the added an EventListener to it using JavaScript, once the lamp is click it disapear and never appear again throughout the game. Now in order to help the player I created "helPlayer function" that has the responsibility of hidding the lamp using "lamp.classList.add("hidden")" I created a class in CSS called "hidden" that I added to the lamp once it clicked to make it disappear.
+</br>
 I also created a boolean type variable called "helpMode" that equals true if the lamp is clicked, if helpMode is true function named "updateHelpMessage" will display a message telling the player which colors he should click to win the level
-
+</br>
 In order to find out which color the player should click I useda variable called "index" which equlas the size of the playerPattern array, the I used a variable called "nextColor" that represent the name of the color a player should click using "colors[ComputerPattern[index]]" the colors array include the colors names "Red", "Green", "Blue", and "Yellow". 
-
+</br>
 so basiclly "updateHelpMessage" will first check the help mode if its true it wiill go to the computerPattern array and check the index which equals the playerPattern array length, in order to git the "id" of the color that should be clicked, then use the colors array to get the "name" of the color that should be clicked, so it is like saying "colors[id of the color player should click]"
 
 
